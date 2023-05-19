@@ -15,16 +15,17 @@ As pthreads criadas representam os aviões e os recursos disputados pelas pthrea
 
 #### Organização
 ~~~
-──/aeroporto                         <- raiz do projeto
-       ├── Makefile                  <- o makefile compila ambos programas o aeroporto com exibição e sem.
-       ├── aeroporto.c               <- programa principal que contem a animação do funcionamento.
-       ├── aeroportoSemExibicao.c    <- programa simplificado somente com as saídas no terminal.
-       ├── exibicao.h                <- header com as definições, inclusões e assinaturas das funções.
-       ├── exibicao.c                <- funções da exibição que faz uso da biblioteca NCURSES.
-       └── README.md                 <- this.
+──/aeroporto                        <- raiz do projeto
+       ├── Makefile                 <- o makefile compila o aeroporto com e o sem exibição.
+       ├── aeroporto.c              <- programa principal que contem a animação do funcionamento.
+       ├── aeroportoSemExibicao.c   <- programa simplificado somente com as saídas no terminal.
+       ├── header.h                 <- header com as definições comum aos dois programas
+       ├── exibicao.h               <- header com as definições, inclusões e assinaturas das funções.
+       ├── exibicao.c               <- funções da exibição que faz uso da biblioteca NCURSES.
+       └── README.md                <- this.
 ~~~
 #### Bibliotecas utilizadas:
-~~~
+```c
   #include <ncurses.h>
   #include <stdio.h>
   #include <stdlib.h>
@@ -34,7 +35,7 @@ As pthreads criadas representam os aviões e os recursos disputados pelas pthrea
   #include <mach/mach_init.h>
   #include <mach/task.h>
 
-~~~
+```
 
 #### Semaphore.h | mach/semaphore.h
 Infelizmente não foi possível utilizar a biblioteca semaphore.h e assim utilizar o sem_init, sem_wait, sem_post, etc., isso porque o projeto foi feito numa máquina mac OS, e embora haja os protótipos e assinaturas das funções da semaphore.h, não há implementação. Com isso a solução foi utilizar outro semaforo, os semaforos da biblioteca mach/semaphore.h tem funcionamento diferente, mas ainda sim é um entrega um semáforo e dessa forma, foi possível contornar esse problema. 
@@ -44,20 +45,30 @@ utilizando o makefile, o programa é compilado.
 É possível alterar o número de vagas e de aviões no arquivo **#######**, optei por deixar hard coded. 
 
 ### ./aeroporto 
-A tela estará dividida em algumas partes, as partes mais importantes são a pista, as vagas e a janela de log.
-1. O avião percebe que há uma vaga -> Fica aguardando para pousar. 
-2. Uma mensagem é escrita na janela de log "Aeronave ID aguardando decolagem".
-3. Assim que o avião consegue o direito de pousar, uma breve animação de um avião pousando na pista é feita.
-4. Uma mensagem é escrita na janela de log "Aeronave ID pousou >>".
-5. Um avião é denhado em uma vaga.
-6. Se outros aviões estiverem pousando os passos acima se repetem, enquanto tiver vaga, até que algum avião pessa para decolar.
-7. Uma mensagem é escrita na janela de log "Aeronave ID aguardando decolagem".
-8. Assim que a pista estiver e o avião conseguir o direito de pousar, umar breve animação de um avião delocando é feita.
-9. Uma mensagem é escrita, na janela de log "Aeronave ID decolou <<".
+
+| A tela estará dividida em algumas partes, as partes mais importantes são a pista, as vagas e a janela de log. |
+| :---- |
+| 1. O avião percebe que há uma vaga -> Fica aguardando para pousar. |
+| 2. Uma mensagem é escrita na janela de log "Aeronave ID aguardando decolagem". |
+| 3. Assim que o avião consegue o direito de pousar, uma breve animação de um avião pousando na pista é feita. |
+| 4. Uma mensagem é escrita na janela de log "Aeronave ID pousou >>". |
+| 5. Um avião é denhado em uma vaga. |
+| 6. Se outros aviões estiverem pousando os passos acima se repetem, enquanto tiver vaga, até que algum avião pessa para decolar. |
+| 7. Uma mensagem é escrita na janela de log "Aeronave ID aguardando decolagem". |
+| 8. Assim que a pista estiver e o avião conseguir o direito de pousar, umar breve animação de um avião delocando é feita. |
+| 9. Uma mensagem é escrita, na janela de log "Aeronave ID decolou <<". |
+
+
+<img src="https://github.com/raoniton/mc504/blob/main/img/exemplo.png" alt="exemplo funcionamento do programa com exibicaoo"  width="80%"  />
 
 ### ./aeroportoSemAnimacao
-Segue os mesmo passos acima, com a diferença de que sua implementação não tem os Semaforos de vagasAnimacao e log, consequentemente não tem animação.
+```
+Segue os mesmo passos acima, com a diferença de que sua implementação não tem os Semaforos de vagasAnimacao e log, 
+consequentemente não tem animação. 
 Apresenta apenas as saídas, mas também é interessante de ver.
+```
+
+<img src="https://github.com/raoniton/mc504/blob/main/img/exemplo2.png" alt="exemplo funcionamento do programa sem exibicao"  width="80%"  />
 
 
 
