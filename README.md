@@ -85,4 +85,4 @@ Para a animação, foi feito usa da biblioteca ```<ncurses.h>``` utilizei como b
 
 ### Video executando o programa
 
-[![YouTube](https://img.shields.io/badge/YouTube-black?style=for-the-badge&logo=YouTube&logoColor=red)]((https://youtu.be/muVSg2rneaA?t=447))
+[![YouTube](https://img.shields.io/badge/YouTube-black?style=for-the-badge&logo=YouTube&logoColor=red)](https://youtu.be/muVSg2rneaA?t=447)
